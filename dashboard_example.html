@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Switcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .menu button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .menu button.active {
+      background-color: #0056b3;
+    }
+    .dashboard {
+      display: none; /* 기본적으로 숨겨놓음 */
+      padding: 20px;
+      border: 1px solid #ddd;
+      margin: 20px auto;
+      width: 80%;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+    .dashboard.active {
+      display: block; /* 활성화된 대시보드만 보임 */
+    }
+  </style>
+</head>
+<body>
+  <h1>대시보드 전환 예제</h1>
+
+  <!-- 메뉴 버튼 -->
+  <div class="menu">
+    <button class="menu-button" data-target="dashboard1">대시보드 1</button>
+    <button class="menu-button" data-target="dashboard2">대시보드 2</button>
+    <button class="menu-button" data-target="dashboard3">대시보드 3</button>
+  </div>
+
+  <!-- 대시보드 화면 -->
+  <div id="dashboard1" class="dashboard active">
+    <h2>대시보드 1</h2>
+    <p>이곳은 첫 번째 대시보드입니다.</p>
+  </div>
+  <div id="dashboard2" class="dashboard">
+    <h2>대시보드 2</h2>
+    <p>이곳은 두 번째 대시보드입니다.</p>
+  </div>
+  <div id="dashboard3" class="dashboard">
+    <h2>대시보드 3</h2>
+    <p>이곳은 세 번째 대시보드입니다.</p>
+  </div>
+
+  <script>
+    // 버튼 클릭으로 대시보드를 전환하는 코드
+    const buttons = document.querySelectorAll('.menu-button'); // 모든 버튼 선택
+    const dashboards = document.querySelectorAll('.dashboard'); // 모든 대시보드 선택
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // 모든 버튼과 대시보드 초기화
+        buttons.forEach(btn => btn.classList.remove('active'));
+        dashboards.forEach(dash => dash.classList.remove('active'));
+
+        // 클릭된 버튼과 해당 대시보드 활성화
+        button.classList.add('active');
+        const targetId = button.getAttribute('data-target');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
