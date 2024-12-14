@@ -19,7 +19,7 @@ mode_counts = data['transportation'].value_counts()
 
 def create_pie_chart(counts):
     fig = go.Figure(data=[go.Pie(labels=counts.index, values=counts.values, hole=0.3)])
-    fig.update_layout(title="무당이와 도보의 비율", template="plotly_dark", width=400, height=400)
+    fig.update_layout(title="노인인구 밀집지역 노인 보호구역 비율", template="plotly_dark", width=400, height=400)
     return fig
 
 mode_ratio_chart = pn.pane.Plotly(create_pie_chart(mode_counts))
@@ -178,7 +178,7 @@ def create_dashboard():
     grid[3:5, :] = data_table
 
     dashboard = pn.template.FastGridTemplate(
-        title="무당이 대시보드",
+        title="새로운 노인보호구역 설치 장소 제안",
         accent_base_color=ACCENT,
         header_background=ACCENT,
         prevent_collision=True,
