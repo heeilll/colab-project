@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "python3",
+    "editor.formatOnSave": true,
+    "files.autoSave": "onFocusChange",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true
+}
