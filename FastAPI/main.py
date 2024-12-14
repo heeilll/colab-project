@@ -1,13 +1,17 @@
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
-import os
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+import uvicorn
 
-# FastAPI 앱 생성
 app = FastAPI()
 
-# 대시보드 HTML 제공
-@app.get("/")
-def read_dashboard():
-    current_dir = os.path.dirname(__file__)  # 현재 파일의 경로
-    dashboard_path = os.path.join(current_dir, "static", "dashboard.html")  # dashboard.html 경로
-    return FileResponse(dashboard_path)  # HTML 파일 반환
+# 정적 파일 제공 설정 (dashboard.html 위치)
+app.mount("/static", StaticFiles(directory="docs"), name="static")
+
+@app.get("/", response_class=HTMLResponse)
+async def read_root():
+    # index.html을 기본 페이지로 보여줍니다.
+    return HTMLResponse(content=open("docs/index.html", encoding="utf-8").read())
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
